@@ -60,6 +60,27 @@ pnpm typecheck
 
 The tests cover the weather-code mapping, response parsing and error handling, with HTTP calls mocked.
 
+## Preview the widget
+
+Opening `dist/mcp-app.html` directly only shows "Loading the weather...", because the widget waits for an MCP host to send it the tool result. To work on the UI without a host, start the preview:
+
+```bash
+pnpm preview:ui
+```
+
+It opens `http://localhost:5173/preview/`, which renders the real widget markup and styles with sample data. Vite reloads the page as you edit the CSS or the markup.
+
+Use query parameters to try other states:
+
+| Parameter | Values | Default |
+| --- | --- | --- |
+| `weather` | `clear`, `cloudy`, `fog`, `rain`, `snow`, `storm` | `clear` |
+| `scheme` | `light`, `dark` | your OS setting |
+
+For example: `http://localhost:5173/preview/?weather=storm&scheme=dark`. To check narrow and wide layouts, use the browser's responsive mode (F12, then Ctrl+Shift+M).
+
+The preview covers rendering and styling only; the connection to the host in `src/ui/mcp-app.ts` is not exercised.
+
 ## Add it to Claude
 
 Build the project first, then point the client at the absolute path of `dist/server/index.js`.
@@ -109,6 +130,7 @@ src/
     render-card.ts            Renders the report into the card
     format.ts                 Display formatting
     styles.css                Card styles
+preview/                      Widget preview with sample data (no host needed)
 tests/                        Vitest tests
 ```
 
