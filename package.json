@@ -2,7 +2,9 @@
   "name": "ts-mcp-weather",
   "version": "1.0.0",
   "description": "A stdio MCP server that shows the weather in an MCP App widget",
-  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
   "private": true,
   "type": "module",
   "scripts": {
@@ -27,8 +29,5 @@
     "vite-plugin-singlefile": "^2.3.4",
     "vitest": "^5.0.5"
   },
-  "packageManager": "pnpm@12.8.1",
-  "engines": {
-    "node": ">=22"
-  }
+  "packageManager": "pnpm@12.8.1"
 }
