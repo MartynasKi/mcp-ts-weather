@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+  </head>
+  <body>
+    <main class="app">
+      <p class="status" id="status">Loading the weather…</p>
+
+      <article class="card" id="card" hidden>
+        <header>
+          <h1 class="card__city" id="city"></h1>
+          <p class="card__country" id="country"></p>
+        </header>
+
+        <div class="card__summary">
+          <section class="current" aria-label="Current weather">
+            <span class="current__icon" id="icon" aria-hidden="true"></span>
+            <p class="current__temperature" id="temperature"></p>
+            <p class="current__condition" id="condition"></p>
+          </section>
+
+          <dl class="details">
+            <div class="details__item">
+              <dt>Feels like</dt>
+              <dd id="feels-like"></dd>
+            </div>
+            <div class="details__item">
+              <dt>Humidity</dt>
+              <dd id="humidity"></dd>
+            </div>
+            <div class="details__item">
+              <dt>Wind</dt>
+              <dd id="wind"></dd>
+            </div>
+          </dl>
+        </div>
+
+        <ol class="forecast" id="forecast" aria-label="5-day forecast"></ol>
+      </article>
+    </main>
+    <script type="module" src="/src/ui/mcp-app.ts"></script>
+  </body>
+</html>

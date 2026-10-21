@@ -1,0 +1,220 @@
+/*
+ * light-dark() follows `color-scheme`, which applyDocumentTheme() sets from the host theme.
+ * Without a host theme it falls back to the OS preference.
+ */
+:root {
+  color-scheme: light dark;
+  font-family: var(--font-sans, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif);
+  --text: light-dark(#0f172a, #f8fafc);
+  --text-muted: light-dark(rgb(15 23 42 / 0.62), rgb(248 250 252 / 0.68));
+  --surface: light-dark(rgb(255 255 255 / 0.45), rgb(255 255 255 / 0.07));
+  --radius-card: 24px;
+  --radius-tile: 16px;
+  --space: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Our display rules would otherwise override the `hidden` attribute. */
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: transparent;
+}
+
+.app {
+  padding: 4px;
+}
+
+.status {
+  margin: 0;
+  padding: var(--space);
+  text-align: center;
+  color: var(--color-text-secondary, var(--text-muted));
+}
+
+/* ---- Card ---- */
+
+.card {
+  container-type: inline-size;
+  display: grid;
+  gap: calc(var(--space) * 1.25);
+  padding: calc(var(--space) * 1.5);
+  border-radius: var(--radius-card);
+  color: var(--text);
+  background: linear-gradient(160deg, var(--gradient-from), var(--gradient-to));
+  box-shadow: 0 8px 24px rgb(15 23 42 / 0.12);
+}
+
+.card[data-weather="clear"] {
+  --gradient-from: light-dark(#fde68a, #1e3a8a);
+  --gradient-to: light-dark(#7dd3fc, #0b1530);
+}
+
+.card[data-weather="cloudy"] {
+  --gradient-from: light-dark(#f1f5f9, #334155);
+  --gradient-to: light-dark(#a5b4c8, #0f172a);
+}
+
+.card[data-weather="fog"] {
+  --gradient-from: light-dark(#f5f5f4, #44403c);
+  --gradient-to: light-dark(#d6d3d1, #1c1917);
+}
+
+.card[data-weather="rain"] {
+  --gradient-from: light-dark(#dbeafe, #1e3a5f);
+  --gradient-to: light-dark(#93a8c6, #0b1120);
+}
+
+.card[data-weather="snow"] {
+  --gradient-from: light-dark(#ffffff, #334155);
+  --gradient-to: light-dark(#bae6fd, #172033);
+}
+
+.card[data-weather="storm"] {
+  --gradient-from: light-dark(#ddd6fe, #312e81);
+  --gradient-to: light-dark(#a5b4fc, #0f0a1f);
+}
+
+.card__city {
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.card__country {
+  margin: 2px 0 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.card__summary {
+  display: grid;
+  gap: var(--space);
+}
+
+/* ---- Current conditions ---- */
+
+.current {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: var(--space);
+}
+
+.current__icon {
+  grid-row: span 2;
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+.current__temperature {
+  margin: 0;
+  font-size: clamp(3rem, 16cqi, 4.5rem);
+  font-weight: 250;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.current__condition {
+  margin: 4px 0 0;
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* ---- Details ---- */
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.details__item {
+  padding: 10px 12px;
+  border-radius: var(--radius-tile);
+  background: var(--surface);
+}
+
+.details dt {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.details dd {
+  margin: 2px 0 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* ---- Forecast ---- */
+
+.forecast {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.forecast__day {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 10px 4px;
+  border-radius: var(--radius-tile);
+  background: var(--surface);
+  font-size: 0.875rem;
+}
+
+.forecast__name {
+  font-weight: 600;
+}
+
+.forecast__icon {
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.forecast__low {
+  color: var(--text-muted);
+}
+
+/* ---- Wide layout: current conditions and details side by side ---- */
+
+@container (min-width: 520px) {
+  .card__summary {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .details {
+    grid-template-columns: 1fr;
+  }
+
+  .details__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+}
+
+/* ---- Very narrow: keep the details readable ---- */
+
+@container (max-width: 300px) {
+  .details {
+    grid-template-columns: 1fr;
+  }
+
+  .forecast__day {
+    font-size: 0.75rem;
+  }
+}
