@@ -11,6 +11,7 @@
     "build": "pnpm build:ui && pnpm build:server",
     "build:ui": "vite build",
     "build:server": "tsc -p tsconfig.server.json",
+    "preview:ui": "vite --open /preview/",
     "start": "node dist/server/index.js",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.server.json --noEmit",
     "test": "vitest run"
