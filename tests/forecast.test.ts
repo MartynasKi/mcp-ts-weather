@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { WeatherServiceError } from "../src/server/errors.js";
 import { fetchForecast } from "../src/server/open-meteo/forecast.js";
-import { SIAULIAI_FORECAST_RESPONSE } from "./helpers/fixtures.js";
+import { SIAULIAI_FORECAST_RESPONSE_SAMPLE } from "./helpers/fixtures.js";
 import { mockFetchResponse } from "./helpers/mock-fetch.js";
 
 const SIAULIAI = { latitude: 55.93333, longitude: 23.31667 };
@@ -12,7 +12,7 @@ describe("fetchForecast", () => {
   });
 
   it("maps current conditions to the report shape", async () => {
-    mockFetchResponse(SIAULIAI_FORECAST_RESPONSE);
+    mockFetchResponse(SIAULIAI_FORECAST_RESPONSE_SAMPLE);
 
     const { current } = await fetchForecast(SIAULIAI);
 
@@ -26,7 +26,7 @@ describe("fetchForecast", () => {
   });
 
   it("zips the daily arrays into one entry per day", async () => {
-    mockFetchResponse(SIAULIAI_FORECAST_RESPONSE);
+    mockFetchResponse(SIAULIAI_FORECAST_RESPONSE_SAMPLE);
 
     const { daily } = await fetchForecast(SIAULIAI);
 

@@ -1,5 +1,5 @@
 // Trimmed real responses from Open-Meteo, so tests exercise the actual payload shape.
-export const SIAULIAI_GEOCODING_RESPONSE = {
+export const SIAULIAI_GEOCODING_RESPONSE_SAMPLE = {
   results: [
     {
       id: 594739,
@@ -14,7 +14,7 @@ export const SIAULIAI_GEOCODING_RESPONSE = {
 
 export const EMPTY_GEOCODING_RESPONSE = { generationtime_ms: 0.1 };
 
-export const SIAULIAI_FORECAST_RESPONSE = {
+export const SIAULIAI_FORECAST_RESPONSE_SAMPLE = {
   timezone: "Europe/Vilnius",
   current: {
     time: "2026-10-21T10:45",

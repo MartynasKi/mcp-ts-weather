@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { CityNotFoundError, WeatherServiceError } from "../src/server/errors.js";
 import { findCity } from "../src/server/open-meteo/geocoding.js";
-import { EMPTY_GEOCODING_RESPONSE, SIAULIAI_GEOCODING_RESPONSE } from "./helpers/fixtures.js";
+import { EMPTY_GEOCODING_RESPONSE, SIAULIAI_GEOCODING_RESPONSE_SAMPLE } from "./helpers/fixtures.js";
 import { mockFetchNetworkError, mockFetchResponse } from "./helpers/mock-fetch.js";
 
 describe("findCity", () => {
@@ -10,7 +10,7 @@ describe("findCity", () => {
   });
 
   it("returns the best match with its coordinates", async () => {
-    mockFetchResponse(SIAULIAI_GEOCODING_RESPONSE);
+    mockFetchResponse(SIAULIAI_GEOCODING_RESPONSE_SAMPLE);
 
     await expect(findCity("Šiauliai")).resolves.toEqual({
       name: "Šiauliai",

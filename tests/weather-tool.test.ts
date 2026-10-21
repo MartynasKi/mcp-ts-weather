@@ -2,8 +2,8 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { handleGetWeather } from "../src/server/weather-tool.js";
 import {
   EMPTY_GEOCODING_RESPONSE,
-  SIAULIAI_FORECAST_RESPONSE,
-  SIAULIAI_GEOCODING_RESPONSE,
+  SIAULIAI_FORECAST_RESPONSE_SAMPLE,
+  SIAULIAI_GEOCODING_RESPONSE_SAMPLE,
 } from "./helpers/fixtures.js";
 import { mockFetchNetworkError, mockFetchSequence } from "./helpers/mock-fetch.js";
 
@@ -14,7 +14,7 @@ describe("handleGetWeather", () => {
   });
 
   it("returns a text summary and the structured report", async () => {
-    mockFetchSequence(SIAULIAI_GEOCODING_RESPONSE, SIAULIAI_FORECAST_RESPONSE);
+    mockFetchSequence(SIAULIAI_GEOCODING_RESPONSE_SAMPLE, SIAULIAI_FORECAST_RESPONSE_SAMPLE);
 
     const result = await handleGetWeather("Šiauliai");
 
