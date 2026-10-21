@@ -6,7 +6,7 @@ A small [MCP](https://modelcontextprotocol.io) server that answers questions lik
 
 It exposes one tool, `get_weather`, and links it to an [MCP App](https://github.com/modelcontextprotocol/ext-apps) UI resource. Hosts that support MCP Apps show the card; other hosts still get a short text summary.
 
-<img src="docs/screenshot.png" alt="Weather card for Vilnius rendered in Claude" width="500">
+<img src="docs/screenshot.png" alt="Weather card for Barcelona rendered in Claude" width="500">
 
 ## What it does
 
