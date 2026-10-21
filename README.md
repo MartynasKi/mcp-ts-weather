@@ -1,6 +1,8 @@
 # ts-mcp-weather
 
-A small [MCP](https://modelcontextprotocol.io) server that answers questions like *"What's the weather in Šiauliai?"* with a weather card rendered right in the chat.
+*The simplest MCP server ever created 😅*
+
+A small [MCP](https://modelcontextprotocol.io) server that answers questions like *"What's the weather in Vilnius?"* with a weather card rendered right in the chat.
 
 It exposes one tool, `get_weather`, and links it to an [MCP App](https://github.com/modelcontextprotocol/ext-apps) UI resource. Hosts that support MCP Apps show the card; other hosts still get a short text summary.
 
@@ -10,7 +12,7 @@ It exposes one tool, `get_weather`, and links it to an [MCP App](https://github.
 ## What it does
 
 ```
-city name ──► Open-Meteo geocoding ──► Open-Meteo forecast ──► text summary + structured report ──► weather card
+city name ──► Open-Meteo API geocoding ──► Open-Meteo forecast ──► text summary + structured report ──► weather card
 ```
 
 - **Tool:** `get_weather({ city: string })`
@@ -45,7 +47,7 @@ The build writes two things to `dist/`:
 pnpm start
 ```
 
-The server speaks MCP over stdio, so it waits for a client on stdin. Logs go to stderr only, because stdout carries the protocol.
+The server communicates over the MCP stdio transport, so it waits for a client on stdin. Logs go to stderr only, because stdout carries the protocol.
 
 ## Test
 
@@ -84,7 +86,7 @@ Add this to `claude_desktop_config.json` (Settings → Developer → Edit Config
 claude mcp add weather -- node /absolute/path/to/ts-mcp-weather/dist/server/index.js
 ```
 
-Then ask: *"What's the weather in Šiauliai?"*
+Then ask: *"What's the weather in Vilnius?"*
 
 ## Project structure
 
